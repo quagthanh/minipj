@@ -1,0 +1,83 @@
+﻿@model minipj.Models.OrderPro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrderPro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressDeliverry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressDeliverry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.NameCus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.NameCus)
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>
+                        Sản Phẩm
+                    </th>
+                    <th>
+                        Số Lượng
+                    </th>
+                    <th>
+                        Đơn giá
+                    </th>
+                    <th>
+                        Thành Tiền
+                    </th>
+                </tr>
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@detail.Product.ProductID</td>
+                        <td>@detail.Quantity</td>
+                        <td>@detail.UnitPrice</td>
+                        <td>@(detail.Quantity*detail.UnitPrice)</td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+        <li><a class="dropdown-item active" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+</div>

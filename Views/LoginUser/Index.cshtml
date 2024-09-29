@@ -1,0 +1,55 @@
+﻿@model minipj.Models.AdminUser
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCloneWeb.cshtml";
+}
+
+<section class="vh-90" style="margin-bottom:30px;">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-90">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                @using (Html.BeginForm("LoginAcount", "LoginUser"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="divider d-flex align-items-center my-4">
+                        <h3 class="text-center fw-bold mx-3 mb-0">Đăng Nhập</h3>
+                    </div>
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        @Html.LabelFor(model => model.UserAccount, new { @class = "form-label", @for = "form3Example3" })
+                        @Html.TextBoxFor(model => model.UserAccount, new { @class = "form-control form-control-lg", @id = "form3Example3", placeholder = "Enter a valid email address" })
+                        @Html.ValidationMessageFor(model => model.UserAccount, "", new { @class = "text-danger" })
+                    </div>
+                    <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-3">
+                @Html.LabelFor(model => model.PasswordUser, new { @class = "form-label", @for = "form3Example3" })
+                @Html.TextBoxFor(model => model.PasswordUser, new { @class = "form-control form-control-lg", @id = "form3Example3", placeholder = "Enter a valid password" })
+                @Html.ValidationMessageFor(model => model.PasswordUser, "", new { @class = "text-danger" })
+            </div>
+
+                    if (ViewBag.ErrorInfo != null)
+                    {
+                        <p class="text-danger">@ViewBag.ErrorInfo</p>
+                    }
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="form-check mb-0">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                            <label class="form-check-label" for="form2Example3">Remember me</label>
+                        </div>
+                       
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <input type="submit" value="Login" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" />
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="~/LoginUser/RegisterUser" class="text-danger">Register</a></p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
